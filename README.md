@@ -261,7 +261,7 @@ class PascalCaseName extends React.Component {
             <li className="list-group-item">{company.name}</li>
             <li className="list-group-item">{profession}</li>
           </ul>
-          <div class="d-grid gap-2">
+          <div className="d-grid gap-2">
             <button className="btn btn-success" onClick={this.clickAlert}>That's Right!</button>
             <button className="btn btn-danger" onClick={(e) => this.sayHello(e, name)}>I wanna change the info!</button>
             <button onClick={this.changeProfession}>That's is no my profession!</button>
@@ -329,7 +329,6 @@ const User = (props) => {
     phone,
     website,
     company,
-    profession,
   } = props;
   const changeProfession = () => {
     profession === "back-end programmer"
@@ -337,20 +336,22 @@ const User = (props) => {
       : setProfession("back-end programmer");
   };
   return (
-    <div className="container">
-      <h1>Hello, {name}!</h1>
+    <div className="bg-info card-body">
+      <h1 className="card-title">Hello, {name}!</h1>
       <p>This is the information your information</p>
-      <ul className="list-group">
-        <li className="list-group-item">{username}</li>
-        <li className="list-group-item">{email}</li>
-        <li className="list-group-item">{address.street}</li>
-        <li className="list-group-item">{phone}</li>
-        <li className="list-group-item">{website}</li>
-        <li className="list-group-item">{company.name}</li>
-        <li className="list-group-item">{profession}</li>
+      <ul className="list-group rounded">
+        <li className="list-group-item list-group-item-info">Username: {username}</li>
+        <li className="list-group-item">Email: {email}</li>
+        <li className="list-group-item"> Address: 
+          {address.city}, {address.street}
+        </li>
+        <li className="list-group-item">Phone: {phone}</li>
+        <li className="list-group-item">Website: {website}</li>
+        <li className="list-group-item">Company: {company.name}</li>
+        <li className="list-group-item">Profession: {profession}</li>
       </ul>
-      <div class="d-grid gap-2">
-        <button className="btn btn-danger" onClick={changeProfession}>
+      <div className="d-grid gap-2">
+        <button className="btn btn-danger my-2" onClick={changeProfession}>
           That's is no my profession!
         </button>
       </div>
@@ -359,6 +360,7 @@ const User = (props) => {
 };
 
 export default User;
+
 ```
 
 ## Forms
@@ -367,89 +369,47 @@ export default User;
 //User.js
 import React, { useState } from "react";
 
-const FormRegister = () => {
+const User = (props) => {
+  const [profession, setProfession] = useState("back-end programmer");
+  const {
+    name,
+    username,
+    email,
+    address,
+    phone,
+    website,
+    company,
+  } = props;
+  const changeProfession = () => {
+    profession === "back-end programmer"
+      ? setProfession("front-end programmer")
+      : setProfession("back-end programmer");
+  };
   return (
-    <form>
-      <div class="mb-3">
-        <label htmlFor="name" className="form-label">
-          Full Name
-        </label>
-        <input type="text" className="form-control" id="name" />
+    <div className="bg-info card-body">
+      <h1 className="card-title">Hello, {name}!</h1>
+      <p>This is the information your information</p>
+      <ul className="list-group rounded">
+        <li className="list-group-item list-group-item-info">Username: {username}</li>
+        <li className="list-group-item">Email: {email}</li>
+        <li className="list-group-item"> Address: 
+          {address.city}, {address.street}
+        </li>
+        <li className="list-group-item">Phone: {phone}</li>
+        <li className="list-group-item">Website: {website}</li>
+        <li className="list-group-item">Company: {company.name}</li>
+        <li className="list-group-item">Profession: {profession}</li>
+      </ul>
+      <div className="d-grid gap-2">
+        <button className="btn btn-danger my-2" onClick={changeProfession}>
+          That's is no my profession!
+        </button>
       </div>
-      <div class="mb-3">
-        <label htmlFor="email" className="form-label">
-          Email address
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" className="form-text">
-          We'll never share your email with anyone else.
-        </div>
-      </div>
-      <div class="mb-3">
-        <p> Address </p>
-        <label htmlFor="street" className="form-label">
-          street
-        </label>
-        <input type="text" className="form-control" id="street" />
-        <label htmlFor="suite" className="form-label">
-          suite
-        </label>
-        <input type="text" className="form-control" id="suite" />
-        <label htmlFor="city" className="form-label">
-          city
-        </label>
-        <input type="text" className="form-control" id="city" />
-        <label htmlFor="zipcode" className="form-label">
-          zipcode
-        </label>
-        <input type="text" className="form-control" id="zipcode" />
-      </div>
-      <div class="mb-3">
-        <label htmlFor="phone" className="form-label">
-          Phone
-        </label>
-        <input type="text" className="form-control" id="phone" />
-      </div>
-      <div class="mb-3">
-        <label htmlFor="website" className="form-label">
-          Website
-        </label>
-        <input type="text" className="form-control" id="website" />
-      </div>
-      <div class="mb-3">
-        <p> Company </p>
-        <label htmlFor="companyName" className="form-label">
-          Company Name
-        </label>
-        <input type="text" className="form-control" id="companyName" />
-        <label htmlFor="catchPhrase" className="form-label">
-          Catch Phrase
-        </label>
-        <input type="text" className="form-control" id="catchPhrase" />
-        <label htmlFor="bs" className="form-label">
-          bs
-        </label>
-        <input type="text" className="form-control" id="bs" />
-      </div>
-      <div class="mb-3">
-        <label htmlFor="profession" className="form-label">
-          Profession
-        </label>
-        <input type="text" className="form-control" id="profession" />
-      </div>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+    </div>
   );
 };
 
-export default FormRegister;
+export default User;
 ```
 
 ## Controlled components
@@ -470,10 +430,21 @@ const FormRegister = () => {
   const [website, setWebsite] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [profession, setProfession] = useState("");
-  const [submitted setSubmitted] = useState(false);
+  const [catchPhrase, setCatchPhrase] = useState("");
+  const [bs, setBs] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newUser = { name, username, email, address: {street, suite, city, zipcode}, phone, website, companyName, profession}
+    const newUser = {
+      name,
+      username,
+      email,
+      address: { street, suite, city, zipcode },
+      phone,
+      website,
+      company: { name, catchPhrase, bs },
+      profession,
+    };
     console.log(newUser);
     //cleaning the form
     setName("");
@@ -486,68 +457,193 @@ const FormRegister = () => {
     setPhone("");
     setWebsite("");
     setCompanyName("");
+    setCatchPhrase("");
+    setBs("");
     setProfession("");
     setSubmitted(true);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-group">
-      <div class="mb-3">
-        <label htmlFor="name" className="form-label">Full Name</label>
-        <input type="text" className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+    <form onSubmit={handleSubmit} className="row form-group bg-dark p-2" id="form-register">
+      <div className="col-12 col-lg-4">
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">
+            Full Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div id="emailHelp" className="form-text text-light">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="website" className="form-label">
+            Website
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
       </div>
-      <div class="mb-3">
-        <label htmlFor="username" className="form-label">Username</label>
-        <input type="text" className="form-control" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <div className="col-12 col-lg-4">
+        <div className="mb-3">
+          <h6 className="my-2"> Address </h6>
+          <label htmlFor="street" className="form-label">
+            street
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="street"
+            value={street}
+            onChange={(e) => setStreet(e.target.value)}
+          />
+          <label htmlFor="suite" className="form-label">
+            suite
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="suite"
+            value={suite}
+            onChange={(e) => setSuite(e.target.value)}
+          />
+          <label htmlFor="city" className="form-label">
+            city
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <label htmlFor="zipcode" className="form-label">
+            zipcode
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="zipcode"
+            value={zipcode}
+            onChange={(e) => setZipcode(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="phone" className="form-label">
+            Phone
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
       </div>
-      <div class="mb-3">
-        <label htmlFor="email" className="form-label">Email address</label>
-        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+      <div className="col-12 col-lg-4">
+        <div className="mb-3">
+          <h6 className="my-2"> Company </h6>
+          <label htmlFor="companyName" className="form-label">
+            Company Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="companyName"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          <label htmlFor="catchPhrase" className="form-label">
+            Catch Phrase
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="catchPhrase"
+            value={catchPhrase}
+            onChange={(e) => setCatchPhrase(e.target.value)}
+          />
+          <label htmlFor="bs" className="form-label">
+            bs
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="bs"
+            value={bs}
+            onChange={(e) => setBs(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="profession" className="form-label">
+            Profession
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="profession"
+            value={profession}
+            onChange={(e) => setProfession(e.target.value)}
+          />
+        </div>
       </div>
-      <div class="mb-3">
-        <p> Address </p>
-        <label htmlFor="street" className="form-label">street</label>
-        <input type="text" className="form-control" id="street" value={street} onChange={(e) => setStreet(e.target.value)} />
-        <label htmlFor="suite" className="form-label">suite</label>
-        <input type="text" className="form-control" id="suite" value={suite} onChange={(e) => setSuite(e.target.value)} />
-        <label htmlFor="city" className="form-label">city</label>
-        <input type="text" className="form-control" id="city" value={city} onChange={(e) => setCity(e.target.value)} />
-        <label htmlFor="zipcode" className="form-label">zipcode</label>
-        <input type="text" className="form-control" id="zipcode" value={zipcode} onChange={(e) => setZipcode(e.target.value)} />
+      <div className="d-grid gap-2 col-6 mx-auto my-2">
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </div>
-      <div class="mb-3">
-        <label htmlFor="phone" className="form-label">Phone</label>
-        <input type="text" className="form-control" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-      </div>
-      <div class="mb-3">
-        <label htmlFor="website" className="form-label">Website</label>
-        <input type="text" className="form-control" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} />
-      </div>
-      <div class="mb-3">
-        <p> Company </p>
-        <label htmlFor="companyName" className="form-label">Company Name</label>
-        <input type="text" className="form-control" id="companyName" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
-        <label htmlFor="catchPhrase" className="form-label">Catch Phrase</label>
-        <input type="text" className="form-control" id="catchPhrase" value={catchPhrase} onChange={(e) => setCatchPhrase(e.target.value)} />
-        <label htmlFor="bs" className="form-label">bs</label>
-        <input type="text" className="form-control" id="bs" value={bs} onChange={(e) => setBs(e.target.value)} />
-      </div>
-      <div class="mb-3">
-        <label htmlFor="profession" className="form-label">Profession</label>
-        <input type="text" className="form-control" id="profession" value={profession} onChange={(e) => setProfession(e.target.value)} />
-      </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      {submitted && ( 
+        <div className="alert alert-success" role="alert">  
+          <h4 className="alert-heading">Well done!</h4> 
+          <p> You have successfully registered. </p>
+          <hr />
+          <p className="mb-0"> You can now login. </p>
+        </div>
+      )}
     </form>
-
-    {submitted && <div>
-        <h2>Thank you for registering!</h2>
-    </div>}
   );
 };
 
 export default FormRegister;
+
 ```
+![desktop form view](images/form_desktop_view.png "desktop form view")
 
 ## Mapping Objects
 
@@ -563,11 +659,15 @@ const APP = () => {
     setUsers([...users, user]);
   };
   return (
-    <div className="App">
-      <FormRegister />
-      <div>
+    <div className="App container">
+      <div className="row my-2">
+        <div>
+          <FormRegister />
+        </div>
+      </div>
+      <div className="row my-2">
         {users.map((user, index) => (
-          <div key={index}>
+          <div key={index} className="col-12 col-lg-4 my-2 card">
             <User
               name={user.name}
               username={user.username}
@@ -575,7 +675,7 @@ const APP = () => {
               address={user.address}
               phone={user.phone}
               website={user.website}
-              companyName={user.companyName}
+              company={user.company}
               profession={user.profession}
             />
           </div>
@@ -587,6 +687,7 @@ const APP = () => {
 
 export default APP;
 ```
+![cards desktop view](images/cards_desktop_view.png "cards desktop view")
 
 ## Use Effect
 
@@ -607,11 +708,15 @@ const APP = () => {
     console.log("useEffect");
   }, [users]);
   return (
-    <div className="App">
-      <FormRegister />
-      <div>
+    <div className="App container">
+      <div className="row my-2">
+        <div>
+          <FormRegister />
+        </div>
+      </div>
+      <div className="row my-2">
         {users.map((user, index) => (
-          <div key={index}>
+          <div key={index} className="col-12 col-lg-4 my-2 card">
             <User
               name={user.name}
               username={user.username}
@@ -619,7 +724,7 @@ const APP = () => {
               address={user.address}
               phone={user.phone}
               website={user.website}
-              companyName={user.companyName}
+              company={user.company}
               profession={user.profession}
             />
           </div>
@@ -637,25 +742,31 @@ export default APP;
 ```javascript
 //App.js
 import React, { useState, useEffect } from "react";
-import FormRegister from "./components/FormRegister/FormRegister";
-import User from "./components/User/User";
+import FormRegister from "./components/FormRegister";
+import User from "./components/User";
 
 const APP = () => {
   const [users, setUsers] = useState([]);
-  const addUser = (user) => {
+  /* const addUser = (user) => {
     setUsers([...users, user]);
-  };
+  }; */
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((data) => setUsers(data));
-  }, []);
+      .then((data) => {
+        setUsers(data);
+      });
+  }, [users]);
   return (
-    <div className="App">
-      <FormRegister />
-      <div>
+    <div className="App container">
+      <div className="row my-2">
+        <div>
+          <FormRegister />
+        </div>
+      </div>
+      <div className="row my-2">
         {users.map((user, index) => (
-          <div key={index}>
+          <div key={index} className="col-12 col-lg-4 my-2 card">
             <User
               name={user.name}
               username={user.username}
@@ -663,7 +774,7 @@ const APP = () => {
               address={user.address}
               phone={user.phone}
               website={user.website}
-              companyName={user.companyName}
+              company={user.company}
               profession={user.profession}
             />
           </div>
@@ -695,27 +806,27 @@ const APP = () => {
       .then((data) => setUsers(data));
   }, []);
   return (
-    <div className="App">
-      <FormRegister />
-      <div>
-        {users.length > 0 ? (
-          users.map((user, index) => (
-            <div key={index}>
-              <User
-                name={user.name}
-                username={user.username}
-                email={user.email}
-                address={user.address}
-                phone={user.phone}
-                website={user.website}
-                companyName={user.companyName}
-                profession={user.profession}
-              />
-            </div>
-          ))
-        ) : (
-          <h1>Loading...</h1>
-        )}
+    <div className="App container">
+      <div className="row my-2">
+        <div>
+          <FormRegister />
+        </div>
+      </div>
+      <div className="row my-2">
+        {users.map((user, index) => (
+          <div key={index} className="col-12 col-lg-4 my-2 card">
+            <User
+              name={user.name}
+              username={user.username}
+              email={user.email}
+              address={user.address}
+              phone={user.phone}
+              website={user.website}
+              company={user.company}
+              profession={user.profession}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -723,6 +834,7 @@ const APP = () => {
 
 export default APP;
 ```
+![mobile form view](images/form_mobile_view.png "mobile form view")
 
 ## [Axios](https://axios-http.com/docs/intro "Axios doc")
 
@@ -750,27 +862,27 @@ const APP = () => {
       .then((response) => setUsers(response.data));
   }, []);
   return (
-    <div className="App">
-      <FormRegister />
-      <div>
-        {users.length > 0 ? (
-          users.map((user, index) => (
-            <div key={index}>
-              <User
-                name={user.name}
-                username={user.username}
-                email={user.email}
-                address={user.address}
-                phone={user.phone}
-                website={user.website}
-                companyName={user.companyName}
-                profession={user.profession}
-              />
-            </div>
-          ))
-        ) : (
-          <h1>Loading...</h1>
-        )}
+    <div className="App container">
+      <div className="row my-2">
+        <div>
+          <FormRegister />
+        </div>
+      </div>
+      <div className="row my-2">
+        {users.map((user, index) => (
+          <div key={index} className="col-12 col-lg-4 my-2 card">
+            <User
+              name={user.name}
+              username={user.username}
+              email={user.email}
+              address={user.address}
+              phone={user.phone}
+              website={user.website}
+              company={user.company}
+              profession={user.profession}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -778,6 +890,7 @@ const APP = () => {
 
 export default APP;
 ```
+![cards mobile view](images/cards_mobile_view.png "cards mobile view")
 
 ## React Router
 
@@ -788,49 +901,89 @@ npm install react-router-dom
 ```javascript
 //App.js
 import React, { useState, useEffect } from "react";
-import FormRegister from "./components/FormRegister/FormRegister";
-import User from "./components/User/User";
-import axios from "axios";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import FormRegister from "./components/FormRegister";
+import User from "./components/User";
+
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 const APP = () => {
   const [users, setUsers] = useState([]);
-  const addUser = (user) => {
+  /* const addUser = (user) => {
     setUsers([...users, user]);
-  };
+  }; */
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((response) => setUsers(response.data));
-  }, []);
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, [users]);
   return (
-    <Router>
-      <div className="App">
-        <FormRegister />
+    <div className="App container">
+      <BrowserRouter>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="container-fluid">
+            <Link className="navbar-brand" to="/">
+              Home
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register/new/user">
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <Routes>
+          <Route path="/" exact render={()=> <h1>Welcome!</h1>}/>
+          <Route path="/:text" exact render={(routeProps) => <User {...routeProps} />} />
+          <Route
+            path="register/new/user"
+            exact
+            render={() => <FormRegister />}
+          />
+        </Routes>
+      </BrowserRouter>
+      <div className="row my-2">
         <div>
-          {users.length > 0 ? (
-            users.map((user, index) => (
-              <div key={index}>
-                <User
-                  name={user.name}
-                  username={user.username}
-                  email={user.email}
-                  address={user.address}
-                  phone={user.phone}
-                  website={user.website}
-                  companyName={user.companyName}
-                  profession={user.profession}
-                />
-              </div>
-            ))
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          <FormRegister />
+        </div>
+        <div className="row my-2">
+          {users.map((user, index) => (
+            <div key={index} className="col-12 col-lg-4 my-2 card">
+              <User
+                name={user.name}
+                username={user.username}
+                email={user.email}
+                address={user.address}
+                phone={user.phone}
+                website={user.website}
+                company={user.company}
+                profession={user.profession}
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </Router>
+    </div>
   );
 };
 
 export default APP;
+
 ```
